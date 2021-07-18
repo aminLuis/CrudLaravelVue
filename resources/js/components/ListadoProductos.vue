@@ -17,8 +17,8 @@
              <td> {{pro.stock}} </td>
              <td> {{pro.costo}} </td>
              <td>
-                <a href="#" class="btn btn-primary">Editar</a>
-                <a href="#" class="btn btn-danger">Eliminar</a>
+                <a class="btn btn-primary">Editar</a>
+                <a @click="eliminar(pro)" class="btn btn-danger">Eliminar</a>
              </td>
          </tr>
      </tbody>
@@ -32,18 +32,35 @@
         data() {
             return {
                 productos:[],
+                err:false,
+                vm:null,
+                info:null
             };
         },
 
+          errorCaptured(err,vm,info){
+             this.err = err;
+             this.vm = vm;
+             this.info = info;
+
+             return !this.stopPropagation;
+          },
+
         methods: {
             async listar(){
-               //const res = await axios.get('producto');
-               //this.productos = res.data;
-
-              axios.get('producto').then(function (response) {
-                    this.productos = response.data;
+           
+              axios.get('producto').then(res=>{
+                this.productos = res.data;
               })
 
+            },
+            async eliminar(pro){
+                const confirmacion = confirm('Eliminar producto');
+
+                 if(confirmacion){
+                   const res = await axios.delete('/producto/'+pro.ide);
+                 }
+               
             }
 
         },

@@ -82,8 +82,8 @@ class ProductosController extends Controller
      * @param  \App\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(productos $productos)
+    public function destroy($id)
     {
-        //
+        productos::destroy($id);
     }
 }

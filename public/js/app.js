@@ -2046,20 +2046,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      productos: 'Luis'
+      productos: [],
+      err: false,
+      vm: null,
+      info: null
     };
+  },
+  errorCaptured: function errorCaptured(err, vm, info) {
+    this.err = err;
+    this.vm = vm;
+    this.info = info;
+    return !this.stopPropagation;
   },
   methods: {
     listar: function listar() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                //const res = await axios.get('producto');
-                //this.productos = res.data;
-                axios.get('producto').then(function (response) {
-                  this.productos = response.data;
+                axios.get('producto').then(function (res) {
+                  _this.productos = res.data;
                 });
 
               case 1:
@@ -2068,6 +2077,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    eliminar: function eliminar(pro) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var confirmacion, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                confirmacion = confirm('Eliminar producto');
+
+                if (!confirmacion) {
+                  _context2.next = 5;
+                  break;
+                }
+
+                _context2.next = 4;
+                return axios["delete"]('/producto/' + pro.ide);
+
+              case 4:
+                res = _context2.sent;
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -38618,7 +38655,22 @@ var render = function() {
           _vm._v(" "),
           _c("td", [_vm._v(" " + _vm._s(pro.costo) + " ")]),
           _vm._v(" "),
-          _vm._m(1, true)
+          _c("td", [
+            _c("a", { staticClass: "btn btn-primary" }, [_vm._v("Editar")]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-danger",
+                on: {
+                  click: function($event) {
+                    return _vm.eliminar(pro)
+                  }
+                }
+              },
+              [_vm._v("Eliminar")]
+            )
+          ])
         ])
       }),
       0
@@ -38639,20 +38691,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Costo unidad")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acción")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-        _vm._v("Editar")
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-danger", attrs: { href: "#" } }, [
-        _vm._v("Eliminar")
       ])
     ])
   }
