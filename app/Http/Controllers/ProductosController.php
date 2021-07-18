@@ -14,8 +14,12 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        return view('producto.index');
+     
+      return productos::get();
+      
     }
+
+   
 
     /**
      * Show the form for creating a new resource.
@@ -44,9 +48,9 @@ class ProductosController extends Controller
      * @param  \App\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function show(productos $productos)
+    public function show($id)
     {
-        //
+        return productos::findOrfail($id);
     }
 
     /**
