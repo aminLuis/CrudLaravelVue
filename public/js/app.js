@@ -2080,26 +2080,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     eliminar: function eliminar(pro) {
+      var _this2 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var confirmacion, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                confirmacion = confirm('Eliminar producto');
+                confirmacion = confirm("Eliminar producto ".concat(pro.descripcion));
 
                 if (!confirmacion) {
-                  _context2.next = 5;
+                  _context2.next = 6;
                   break;
                 }
 
                 _context2.next = 4;
-                return axios["delete"]('/producto/' + pro.ide);
+                return axios["delete"]('producto/' + pro.id);
 
               case 4:
                 res = _context2.sent;
 
-              case 5:
+                _this2.listar();
+
+              case 6:
               case "end":
                 return _context2.stop();
             }

@@ -55,12 +55,14 @@
 
             },
             async eliminar(pro){
-                const confirmacion = confirm('Eliminar producto');
+                const confirmacion = confirm(`Eliminar producto ${pro.descripcion}`);
+              
+                if(confirmacion){
+                    //axios.delete(`producto/${pro.id}`);
+                    const res = await axios.delete('producto/'+pro.id);
+                    this.listar();
+                }
 
-                 if(confirmacion){
-                   const res = await axios.delete('/producto/'+pro.ide);
-                 }
-               
             }
 
         },
