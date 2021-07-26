@@ -1,5 +1,3 @@
-Listado de productos (Vista nueva)
-
 @extends('layouts.app')
 
 @section('content')
@@ -7,9 +5,6 @@ Listado de productos (Vista nueva)
 
 <div class="container">
 
-<a href="{{url('/producto/create')}}" class="btn btn-success">Nuevo</a>
-<hr>
-  
    
 <productos-component></productos-component>
 

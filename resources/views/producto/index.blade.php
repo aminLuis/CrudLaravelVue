@@ -4,13 +4,4 @@ Listado de productos.
 @section('content')
 
 
-<div class="container">
-
-<a href="{{url('/producto/create')}}" class="btn btn-success">Nuevo</a>
-<hr>
-  
-
-</div>
-
-
 @endsection

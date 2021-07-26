@@ -14,9 +14,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-     
-      return productos::get();
-      
+      return productos::get();      
     }
 
    
@@ -39,7 +37,7 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       productos::insert($request->all());
     }
 
     /**
@@ -61,7 +59,7 @@ class ProductosController extends Controller
      */
     public function edit(productos $productos)
     {
-        return view('producto.edit');
+        
     }
 
     /**
@@ -71,9 +69,9 @@ class ProductosController extends Controller
      * @param  \App\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, productos $productos)
+    public function update(Request $request, $id)
     {
-        //
+      productos::where('id','=',$id)->update($request->all());
     }
 
     /**
